@@ -4,7 +4,9 @@ Lab7
 可能。在硬碟剛被插到電腦上的時候，此時 file 存在硬碟中，但卻沒有對應的 vnode。
 
 #### `Q2` Is EOF pass to the reader by a special character in the reader’s buffer?
-reader 可以透過 f_pos 得知 file 的 EOF，在讀完後回傳一個值通知 user 已經讀完了。
+在 lab7 中，使用 (-1) 來實作 EOF，但如果 user 把 (-1) 字符寫在字串當中，就可能造成誤判。所以可以改讓 reader 透過 f_pos 得知 file 的大小，在讀完後回傳一個值通知 user 已經讀完了。<br>
+<br>
+※ 思考：在 disk 裡可以很容易的取得檔案大小，但若是在終端機中，要如何得知輸入？socket 中要如何得知封包大小？
 
 #### `Q3` Should each task owns its current working directory and the root directory?
 需要紀錄 current working directory，這樣才有辦法知道跟其他 file 或 dir 的相對關係。<br>
